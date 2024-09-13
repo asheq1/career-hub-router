@@ -4,6 +4,9 @@ import Job from "../Job/Job";
 
 const FeaturedJobs = () => {
     const [jobs, setJobs] = useState([]);
+
+    const [dataLength, setDataLength] = useState(4);
+
     useEffect(()=>{
         axios.get("jobs.json")
          .then(res => setJobs(res.data))
@@ -18,10 +21,14 @@ const FeaturedJobs = () => {
            </div>
            <div className="grid grid-cols-2 gap-6">
                 {
-                    jobs.map(job => <Job
+                    jobs.slice(0, dataLength).map(job => <Job
                         key={job.id}
                         job={job}></Job>)
                 }
+           </div>
+           <div className={dataLength === jobs.length ? 'hidden' : ''}
+                onClick={()=> setDataLength(jobs.length)}>
+                <button className="btn btn-primary">Show all jobs</button>
            </div>
         </div>
     );
