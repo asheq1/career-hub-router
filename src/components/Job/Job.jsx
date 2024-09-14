@@ -1,8 +1,9 @@
 import { CiLocationOn } from "react-icons/ci";
 import { RiMoneyDollarCircleLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Job = ({job}) => {
-    const {logo, company_name, remote_or_onsite,
+    const {id, logo, company_name, remote_or_onsite,
         location,salary,job_type,  job_title} = job;
 
     return (
@@ -27,7 +28,9 @@ const Job = ({job}) => {
                         <h2 className="flex"><RiMoneyDollarCircleLine className="text-2xl" />{salary}</h2>
                     </div>
                     <div className="card-actions ">
-                        <button className="btn  px-3 py-2 text-white" style={{ backgroundColor: '#7E90FE' }}>View Details</button>
+                        <Link to={`/job/${id}`}>
+                            <button className="btn  px-3 py-2 text-white" style={{ backgroundColor: '#7E90FE' }}>View Details</button>
+                        </Link>
                     </div>
                 </div>
             </div>
